@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SAVI 750 - lblock assignment 1</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Lora|Noto+Sans+JP" rel="stylesheet">
+</head>
+<body>
+<h1>Assignment 1 	&ndash; SAVI 750</h1>
+<h2>by Lucy Block</h2>
+<div>
+  <p>
+    <strong>What's an accurate picture of rent regulated buildings across NYC? What are the different typologies of rent regulation and where are those buildings?</strong>
+  </p>
+  <p>
+    This question is an unsexy one, but a challenging and important one. Beyond "natural" rent-stabilization of multifamily buildings built before 1974, there is a complex web of buildings subject to rent regulation/stabilization because of tax exemption and regulatory programs such as 421a, J-51, Low Income Housing Tax Credits, and Inclusionary Housing. These overlap and intersect, and their administration at different levels of government make it very difficult to get a comprehensive picture of rent regulation in the entire city. 
+  </p>
+  <p>
+    For my research project, I'd like to work on reconciling disperse data sources to build out this picture. The audience is my organization, ANHD, which would like to have clear data on rent-regulated housing, the Housing Data Coalition, which I'm a member of, and potentially a wider public. The project involves building a solid foundation for doing other types of research, by linking a database of rent regulation to other data sources. However, the process of reconciling the data sources might reveal insights that are interesting to housing data analysts. 
+  </p>
+  <p>
+    Sources should include:
+  </p>
+  <ul>
+    <li><a href="https://www1.nyc.gov/site/rentguidelinesboard/resources/rent-stabilized-building-lists.page" target="_blank">Building lists</a> from the New York State Department of Homes and Community Renewal (HCR)</li>
+    <li><a href="taxbills.nyc" target="_blank">Scrapes of property tax bills</a></li>
+    <li>The Furman Center's <a href="CoreData.nyc" target="_blank">CoreData</a> database of regulated and subsidized buildings</li>
+    <li>The Housing New York <a href="https://data.cityofnewyork.us/Housing-Development/Housing-New-York-Units-by-Building/hg8x-zxpr" target="_blank">buildings</a> and <a href="https://data.cityofnewyork.us/Housing-Development/Housing-New-York-Units-by-Project/hq68-rnsi" target="_blank">projects</a> datasets</li>
+  </ul>
+  <div id="dhcrmap">
+      <iframe width="100%" height="600" frameborder="0" src="https://lucindbl.carto.com/builder/b12b800b-b2fb-4c85-b9cd-6e0439360e0f/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen>
+      </iframe>
+  </div>
+  <p>
+    The above map has data from HCR's 2016 building lists, which it publishes in PDF form for every borough. It includes buildings that have filed records with the department as having contained rent stabilized apartments at any point since 1984. It also includes information on properties' "statuses," which can involve regulatory programs. <a href="https://apps.hcr.ny.gov/BuildingSearch/popup.aspx" target="_blank">Metadata here</a>.
+  </p>
+  <p>
+    I found a <a href="https://github.com/MODA-NYC/DHCR_RentStabData" target="_blank">script on github</a> that parses the PDFs into a CSV file, which I joined to PLUTO using QGIS and uploaded to Carto. I re-formatted the table in Excel to define an individual 0/1 variable for each program, and added separate layers displaying two common programs: 421a and J-51. 
+  </p>
+  <br>
+  <h2>Data Viz critique</h2>
+  <p>
+    The NYTimes is at the forefront of developing nifty data visualizations, often interactive maps of the country, in a way that makes big data more exciting to the general public. I took a look at the <a href="https://www.nytimes.com/interactive/2017/06/22/upshot/Census-Time-Machine-Demographics-in-America.html" target="_blank">Census Time Machine</a>, and I think that while the interactivity is well designed, the viz doesn't offer huge insights. 
+  </p>
+  <p>
+    The NYTimes took a map of the country, divided it up into counties, and split Census data up using four categories: race, ethnicity, gender, and age. It then compared each county's stats to the U.S. average in different years and created matches. Queens County, split 26% White, 18% Black, 28% Hispanic, and 28% Other looks most like the U.S. in 2060, while Staten Island, at 62% White, looks most like the U.S. in 2016. At the same time, the county that <i>most</i> resembles the U.S. in 2060, Clark County, Nevada, is less diverse than Queens (though how could it not be), at 44% White, 11% Black, 31% Hispanic and 14% Other. 
+  </p>
+  <p>
+    Beyond reinforcing my borough pride, the map doesn't do a ton of illuminating. As they state, "The racial categories are limited, and the comparisons do not account for variables like education, income or population density." I wish they had included a visualization of the demographics of the entire U.S. decade by decade as a point of comparison.
+  </p>
+</div>
+</body>
+</html>

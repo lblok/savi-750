@@ -1,0 +1,24 @@
+What's an accurate picture of rent regulated buildings across NYC?
+
+The NYS Department of Homes and Community Renewal maintains information on rent-regulated/rent-stabilized housing, but their data is not accessible. The agency publishes a yearly list of rent-stabilized building by borough in PDF format and has an online searchable portal. The listed buildings depend on landlord registration, and it's possible that the agency's own outdated technology limits the quality of the data they maintain and publish. 
+
+--other methods people have used to get this info--
+--why the info is important--
+--complexities of regulatory programs/why it's difficult to get a clear picture--
+
+
+Steps:
+0. Review other methodologies of getting a universe of stabilized buildings by aggregating datasets (Amirentstabilized, Wayne Tvedt's work)
+1. Write a program to liberate DHCR building lists from PDFs into CSVs
+2. Explore universe of regulatory program buildings (e.g. 421a, j-51, IH) between the datasets
+    2a. Cross-reference building universe and regulatory program with taxbills.nyc dataset, a scrape of DOF property tax bills (which get rent stabilization information from DHCR, but have unit counts)
+    2b. Cross-reference building universe and regulatory programs from DHCR and taxbills.nyc with the NYU Furman Center's CoreData database.
+    2c. Cross-reference with Housing New York projects 
+        > need to figure out which projects were completed before 2016 to make it into DHCR list and into taxbills? any overlap?
+3. Explore universe of non regulatory program buildings
+    3a. What percentage of buildings built before 1974 with 6 or more units overlap with the other datasets that don't show regulatory programs attached? 
+
+
+
+
+zip codes: write a script to ask for every zip code. 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SAVI 750 - lblock assignment 1</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Lora|Noto+Sans+JP" rel="stylesheet">
+<style>
+body {
+    font-family: 'Lora', sans-serif;
+}
+
+
+div {
+    font-family: 'Lora', sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+p {
+    margin: 1rem 2rem 1rem 2rem;
+}
+
+ul {
+    margin-left: 2rem;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 300;
+    margin: .5rem 2rem .5rem 2rem;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 24px;
+    margin: .5rem 2rem .5rem 2rem;
+}
+
+a {
+    background-color: orange;
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    background-color: gray;
+}
+
+#dhcrmap {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+
+</style>
+</head>
+<body>
+<h1>Assignment 2 	&ndash; SAVI 750</h1>
+<h2>by Lucy Block</h2>
+<div>
+  <p>
+    This week, I used the command line to pull Housing New York data on <a href="https://data.cityofnewyork.us/Housing-Development/Housing-New-York-Units-by-Building/hg8x-zxpr" target="_blank">buildings</a> and <a href="https://data.cityofnewyork.us/Housing-Development/Housing-New-York-Units-by-Project/hq68-rnsi" target="_blank">projects</a> from the NYC Open Data portal API. I added those CSVs to Carto and used the built-in Analysis feature to join those datasets to the DHCR data from last week. I used an intersect/inner join to select only properties that appear in both DHCR's data and Housing New York, because I wanted to examine which programs they're listed in in each to look at consistencies. A visual check in the map and doing some simple SQL queries on the dataset within Carto suggest that the two datasets are almost completely inconsistent in which programs they display. E.g. the properties that show an Article XI tax benefit in the HNY dataset mostly show J-51 in the DHCR dataset. Many properties in the HNY dataset show 420c, which isn't in the DHCR data at all. I need to look into what that program is. 
+  </p>
+  <p>
+    My issues arose mostly from the Carto platform, which I always struggle with. I find it so easy to break things using their point-and-click interface. For example, I used their interface to join layers and then deleted what I thought was an extraneous layer from the map, but because I had pointed to the layer <i>within</i> the map rather for the join rather than the dataset <i>outside</i> the map, I broke and deleted my entire analysis. I don't find it intuitive and they don't give you warnings for that type of thing. 
+  </p>
+  <div id="dhcrmap">
+      <iframe width="100%" height="600" frameborder="0" src="https://lucindbl.carto.com/builder/9f065769-050c-4445-9ed3-32ac9d20b4ba/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen>
+      </iframe>
+  </div>
+  <br>
+  <h2>Data Viz critique</h2>
+  <p>
+    I wanted to focus on this <a href="http://iquantny.tumblr.com/post/125485105679/rent-stabilized-housing-is-disappearing-fast">I Quant NY</a> map not because it’s an incredible visualization, but because it comes from a data source that I already use for work (e.g. in <a href="https://map.displacementalert.org" target="_blank">DAP Map</a>) and am interested in exploring further in this class. It’s a dataset of rent stabilized unit counts scraped from DOF tax bill PDFs. The blog post is more of an initial data exploration than a complete analysis in my opinion. 
+  </p>
+  <p>
+    I think the simplicity is helpful as a quick way to break down the data for a public audience. However, Ben Wellington mostly takes the data at face value. I’ve compared John Krauss's <a href="http://taxbills.nyc" target="_blank">tax bills</a> data to Rent Guidelines Board reports and found huge discrepancies when aggregating the data by year. So he’s presenting increases and decreases in different geographies, but based on that other data source I’m not convinced there aren’t major biases skewing those conclusions. What he did makes absolute sense if you’re analyzing the data source by itself, I just know that this particular one might have caveats that aren’t addressed and can only be figured out by digging into other sources. 
+  </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SAVI 750 - lblock map presentation</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Lora|Noto+Sans+JP" rel="stylesheet">
+<style>
+body {
+    font-family: 'Lora', sans-serif;
+}
+
+
+div {
+    font-family: 'Lora', sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+p {
+    margin: 1rem 2rem 1rem 2rem;
+}
+
+ul {
+    margin-left: 2rem;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 300;
+    margin: .5rem 2rem .5rem 2rem;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 24px;
+    margin: .5rem 2rem .5rem 2rem;
+}
+
+h3 {
+    margin: .5rem 2rem .5rem 2rem;
+}
+
+f6 {
+    font-size: 11px;
+}
+
+a {
+    background-color: rgb(238, 183, 137);
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    background-color: rgb(207, 185, 174);
+}
+
+#dhcrmap {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.tbl {
+    padding-left: 4rem;
+}
+
+.tbl tr {
+    cellpadding: 2rem;
+}
+
+</style>
+</head>
+<body>
+<h1>Whither our city's tax-exempt housing?</h1>
+<h2>by Lucy Block, for SAVI 750</h2>
+<div>
+    <p>
+        Really, this is a test of the consistency of two datasets on rent-regulated* housing: <a href="https://www1.nyc.gov/site/rentguidelinesboard/resources/rent-stabilized-building-lists.page" target="_blank">Lists of rent-stabilized buildings</a> from the New York State Department of Homes and Community Renewal (DHCR) and John Krauss's <a href="taxbills.nyc" target="_blank">scrapes of property tax bills</a>. 
+    </p>
+    <p>
+        <f6>*Note: Though there are slight nuances, I use the terms regulated and stabilized interchangeably here</f6>
+    </p>
+    <p>
+        DHCR's lists include every rent-stabilized building they've had in their database since 1984, whether or not it currently has any. The data I used is from 2016. I used this <a href="https://github.com/MODA-NYC/DHCR_RentStabData" target="_blank">script on github</a> to parse the PDFs into a CSV file. It had some messy columns containing an <a href="https://apps.hcr.ny.gov/BuildingSearch/popup.aspx" target="_blank">amalgamation of statuses and programs</a> with an inconsistent structure, which I had to clean in order to know whether or not each property meets a particular program or status. 
+    </p>
+    <p>
+        The dataset that John Krauss scraped from tax bills (documentation <a href="https://github.com/talos/nyc-stabilization-unit-counts" target="_blank">here</a>) takes PDFs for every building with 6 or more units in NYC and scrapes the count of stabilized units being charged a $10 fee each. From what I understand, DHCR reports the number of rent-regulated units the landlord registered for the building to DOF so DOF can get that fee for them to administer rent regulation. The tax bills data includes 2007 through 2016. The dataset also includes programs listed on the tax bills like 421a, J-51, and programs that are based on individual households. 
+    </p>
+    <p>
+        So, one of the datasets comes from the agency in charge of enforcing rent regulation and has all buildings ever, but no details on number of units, and some programs that apply to the buildings. The other has numbers of units each year and some programs. But are they consistent with one another? Based on my experience working with this data, I was skeptical. And I decided to look at 421a and J-51, big tax exemption programs, because they're included in both datasets, to see if each dataset shows the same properties as containing those programs.*
+    </p>
+    <p>
+        <strong>The short answer &ndash; no.</strong> The datasets are super inconsistent. For more, read on!
+    </p>
+    <br>
+    <p>
+    <h3>How many properties are in each dataset and do they overlap?</h3>
+        <table class ="tbl" cellpadding="5">
+            <tr>
+                <td><strong>DHCR list total properties</strong></td>
+                <td>39,344</td> 
+            </tr>
+            <tr>
+                <td><strong>Total tax bills properties</strong></td>
+                <td>45,220</td> 
+            </tr>
+            <tr>
+                <td><strong>Properties in both</strong></td>
+                <td>37,232</td> 
+            </tr>
+        </table>
+    </p>
+    <p>
+        The overlap in the universe of properties in the two datasets is 95% of the DHCR list and 82% of the tax bills data. I'm not sure why; I would expect the DHCR universe to be the bigger one since it includes all stabilized properties going back to 1984. I only found 309 properties in the tax bills data that don't have any stabilized units, so it doesn't seem to be that there are a lot of non-stabilized properties in there. If DOF is getting their stabilization counts from DHCR, why would they have more properties listed as stabilized?  
+    </p>
+    <br>
+    <p>
+    <h3>Do the two datasets agree on which properties have 421a?</h3>
+        <table class ="tbl" cellpadding="5">
+            <tr>
+                <td><strong>DHCR list 421a properties</strong></td>
+                <td>2,337</td> 
+            </tr>
+            <tr>
+                <td><strong>Tax bills 421a properties</strong></td>
+                <td>1,718</td> 
+            </tr>
+            <tr>
+                <td><strong>Properties in both</strong></td>
+                <td>909</td> 
+            </tr>
+        </table>
+    </p>
+    <p>
+        Nope! The overlap is 39% of the DHCR list and 53% of the tax bills data. Not consistent at all! ¯\_(ツ)_/¯
+    </p>
+    <br>
+    <p>
+    <h3>Do the two datasets agree on which properties have J-51?</h3>
+        <table class ="tbl" cellpadding="5">
+            <tr>
+                <td><strong>DHCR list J-51 properties</strong></td>
+                <td>1,343</td> 
+            </tr>
+            <tr>
+                <td><strong>Tax bills J-51 properties</strong></td>
+                <td>7,653</td> 
+            </tr>
+            <tr>
+                <td><strong>Properties in both</strong></td>
+                <td>880</td> 
+            </tr>
+        </table>
+    </p>
+    <p>
+            Even worse! 66% of the DHCR list but only 11% of the tax bills list!
+    </p>
+    <p>
+        Note: these <a href="https://www1.nyc.gov/site/finance/benefits/benefits-421a.page" target="_blank">421a</a> and <a href="https://www1.nyc.gov/site/finance/benefits/benefits-j51.page" target="_blank">J-51</a> data sources from the Department of Finance are likely more authoritative. But I'm more interested in figuring out how well these two data sources agree with one another, because they each have broad universes of rent-regulated housing in NYC.
+    </p>
+    <br>
+    <h2>Methods</h2>
+    <p>
+        I did these calculations with SQL joins. For example, here's how I calculated how many 421a properties were in both datasets:
+        <pre>
+            <code>
+                SELECT COUNT(*) FROM dhcr_4rs d
+                INNER JOIN rentstab16 r ON r.bbl = d.bbl
+                WHERE _421_a = 1 AND rs421a = 1
+            </code>
+        </pre>
+    </p>
+    <p>
+        Then I created new columns to indicate whether a property fell in one dataset, the other, or both, using SQL commands like this:
+        <pre>
+            <code>
+                SELECT r.cartodb_id, r.the_geom, r.the_geom_webmercator, rs421a, _421_a, r.bbl,
+                    CASE WHEN rs421a = 1 AND (_421_a is null OR _421_a = 0) THEN 'Tax Bills'
+                        WHEN (rs421a is null or rs421a = 0) AND _421_a = 1 THEN 'DHCR'
+                        WHEN rs421a = 1 AND _421_a = 1 THEN 'Both'
+                        ELSE NULL END AS where421a
+                FROM rentstab16 r
+                LEFT JOIN dhcr_4rs d ON d.bbl = r.bbl
+                WHERE _421_a = 1 OR rs421a = 1
+            </code>
+            </pre>
+    </p>
+
+  </p>
+  <p>
+  </p>
+  <p>
+    What about j-51? 
+
+    18,418 are j-51 in tax bills, 3,229 are j-51 in DHCR, 
+  </p>
+  <p>
+      What about "normal" buildings without an exemption? (Caveat: tax bills buildings could still contain SCRIE, DRIE, COCO, STAR, ESTAR, SCHE, and VET. Are those all "normal"?)
+  </p>
+  <div id="dhcrmap">
+      <iframe width="100%" height="600" frameborder="0" src="https://lucindbl.carto.com/builder/fca75038-8654-4f10-bb62-364223138fb2/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen>
+      </iframe>
+  </div>
+  <br>
+
+</div>
+</body>
+</html>
