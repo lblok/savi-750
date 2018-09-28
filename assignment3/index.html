@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SAVI 750 - lblock map presentation</title>
+<title>lblock map presentation - SAVI 750</title>
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Lora|Noto+Sans+JP" rel="stylesheet">
 <style>
@@ -26,7 +26,7 @@ ul {
 }
 
 h1 {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-size: 30px;
     font-weight: 300;
     margin: .5rem 2rem .5rem 2rem;
@@ -34,7 +34,7 @@ h1 {
 
 h2 {
     font-weight: 300;
-    font-size: 24px;
+    font-size: 20px;
     margin: .5rem 2rem .5rem 2rem;
 }
 
@@ -63,10 +63,8 @@ a:hover {
 
 .tbl {
     padding-left: 4rem;
-}
-
-.tbl tr {
-    cellpadding: 2rem;
+    left: 20%;
+    position: relative;
 }
 
 </style>
@@ -75,20 +73,21 @@ a:hover {
 <h1>Whither our city's tax-exempt housing?</h1>
 <h2>by Lucy Block, for SAVI 750</h2>
 <div>
+    <br>
     <p>
-        Really, this is a test of the consistency of two datasets on rent-regulated* housing: <a href="https://www1.nyc.gov/site/rentguidelinesboard/resources/rent-stabilized-building-lists.page" target="_blank">Lists of rent-stabilized buildings</a> from the New York State Department of Homes and Community Renewal (DHCR) and John Krauss's <a href="taxbills.nyc" target="_blank">scrapes of property tax bills</a>. 
+        Really, this is a test of the consistency of two datasets on rent-regulated* housing: <a href="https://www1.nyc.gov/site/rentguidelinesboard/resources/rent-stabilized-building-lists.page" target="_blank">lists of rent-stabilized buildings</a> from the New York State Division of Homes and Community Renewal (DHCR) and John Krauss's <a href="http://taxbills.nyc" target="_blank">scrapes of property tax bills</a>. 
     </p>
     <p>
         <f6>*Note: Though there are slight nuances, I use the terms regulated and stabilized interchangeably here.</f6>
     </p>
     <p>
-        DHCR's lists include every rent-stabilized building they've had in their database since 1984, whether or not it currently has any. The data I used is from 2016. I used this <a href="https://github.com/MODA-NYC/DHCR_RentStabData" target="_blank">script on github</a> to parse the PDFs into a CSV file. It had some messy columns containing an <a href="https://apps.hcr.ny.gov/BuildingSearch/popup.aspx" target="_blank">amalgamation of statuses and programs</a> with an inconsistent structure, which I had to clean in order to know whether or not each property meets a particular program or status. 
+        DHCR's lists include every rent-stabilized property they've had in their database since 1984, whether or not it currently has any. The data I used is from 2016. I used this <a href="https://github.com/MODA-NYC/DHCR_RentStabData" target="_blank">MODA script on Github</a> to parse the PDFs into a CSV file. It had some messy columns containing an <a href="https://apps.hcr.ny.gov/BuildingSearch/popup.aspx" target="_blank">amalgamation of statuses and programs</a> with an inconsistent structure, which I had to reformat in order to know whether or not each property meets a particular program or status. It doesn't have any data on the number of stabilized units in a building or the year-by-year status, making it not very useful for analyzing things like where de-stabilization is happening.
     </p>
     <p>
-        The dataset that John Krauss scraped from tax bills (documentation <a href="https://github.com/talos/nyc-stabilization-unit-counts" target="_blank">here</a>) takes PDFs for every building with 6 or more units in NYC and scrapes the count of stabilized units being charged a $10 fee each. From what I understand, DHCR reports the number of rent-regulated units the landlord registered for the building to DOF so DOF can get that fee for them to administer rent regulation. The tax bills data includes 2007 through 2016. The dataset also includes programs listed on the tax bills like 421a, J-51, and programs that are based on individual households. 
+        The dataset that John Krauss scraped from tax bills (documentation <a href="https://github.com/talos/nyc-stabilization-unit-counts" target="_blank">here</a>) takes PDFs for every building with 6 or more units in NYC and scrapes the count of stabilized units being charged a $10 fee each. Here's an <a href="https://nycprop.nyc.gov/nycproperty/StatementSearch?bbl=2024240110&stmtDate=20170602&stmtType=SOA" target="_blank">example</a> of a bill. From what I understand, DHCR reports the number of rent-regulated units the landlord registered for the building to DOF so DOF can get those $ for them to administer rent regulation. The tax bills data includes 2007 through 2016. The dataset also includes programs listed on the tax bills like 421a, J-51, and programs that are based on individual households. 
     </p>
     <p>
-        So, one of the datasets comes from the agency in charge of enforcing rent regulation and has all buildings ever, but no details on number of units, and some programs that apply to the buildings. The other has numbers of units each year and some programs. But are they consistent with one another? Based on my experience working with this data, I was skeptical. And I decided to look at 421a and J-51, big tax exemption programs, because they're included in both datasets, to see if each dataset shows the same properties as containing those programs.*
+        So, one of the datasets comes from the agency in charge of enforcing rent regulation and has all buildings ever, but no details on number of units, and some programs that apply to the buildings. The other has numbers of units each year and some programs. They both originate with DHCR. Are they consistent with one another? Based on my experience working with this data, I was skeptical. And I decided to look at 421a and J-51, big tax exemption programs, because they're included in both datasets, to see if each dataset shows the same properties to have those programs.
     </p>
     <p>
         <strong>The short answer &ndash; no.</strong> The datasets are super inconsistent. For more, read on!
@@ -209,32 +208,14 @@ a:hover {
     </p>
     <p>Then I mapped it!</p>
 
-        Records in DHCR with j-51: 1,343
-        Records in tax bills with j-51: 7,653
-        Records in both with j-51: 880
-
-
-
-        Tried to look at "normal" properties and the categories are different. DHCR data has categories for condo buildings, single room occupancy buildings, special financing programs, that tax bills doesn't specify. So I think what I'm calling a "normal" building in the tax bills data could be e.g. an SRO building, I'm just determining that it doesn't have j-51 or 421-a or 420-c. 
-
-    </p>
-  </p>
-  <p>
-  </p>
-  <p>
-    What about j-51? 
-
-    18,418 are j-51 in tax bills, 3,229 are j-51 in DHCR, 
-  </p>
-  <p>
-      What about "normal" buildings without an exemption? (Caveat: tax bills buildings could still contain SCRIE, DRIE, COCO, STAR, ESTAR, SCHE, and VET. Are those all "normal"?)
-  </p>
   <div id="dhcrmap">
       <iframe width="100%" height="600" frameborder="0" src="https://lucindbl.carto.com/builder/fca75038-8654-4f10-bb62-364223138fb2/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen>
       </iframe>
   </div>
   <br>
-
+  <p>
+      This map lets you look at one layer for the 421a properties in both datasets and see whether the property appears in the DHCR list, tax bills data, or both. There's another layer for J-51 that does the same thing. "Normal" stabilized housing got a little complicated, and I left that out, plus it's a very large number of properties.
+  </p>
 </div>
 </body>
 </html>
