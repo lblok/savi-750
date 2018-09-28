@@ -43,7 +43,7 @@ h3 {
 }
 
 f6 {
-    font-size: 11px;
+    font-size: 12px;
 }
 
 a {
@@ -79,7 +79,7 @@ a:hover {
         Really, this is a test of the consistency of two datasets on rent-regulated* housing: <a href="https://www1.nyc.gov/site/rentguidelinesboard/resources/rent-stabilized-building-lists.page" target="_blank">Lists of rent-stabilized buildings</a> from the New York State Department of Homes and Community Renewal (DHCR) and John Krauss's <a href="taxbills.nyc" target="_blank">scrapes of property tax bills</a>. 
     </p>
     <p>
-        <f6>*Note: Though there are slight nuances, I use the terms regulated and stabilized interchangeably here</f6>
+        <f6>*Note: Though there are slight nuances, I use the terms regulated and stabilized interchangeably here.</f6>
     </p>
     <p>
         DHCR's lists include every rent-stabilized building they've had in their database since 1984, whether or not it currently has any. The data I used is from 2016. I used this <a href="https://github.com/MODA-NYC/DHCR_RentStabData" target="_blank">script on github</a> to parse the PDFs into a CSV file. It had some messy columns containing an <a href="https://apps.hcr.ny.gov/BuildingSearch/popup.aspx" target="_blank">amalgamation of statuses and programs</a> with an inconsistent structure, which I had to clean in order to know whether or not each property meets a particular program or status. 
@@ -154,11 +154,32 @@ a:hover {
         </table>
     </p>
     <p>
-            Even worse! 66% of the DHCR list but only 11% of the tax bills list!
+        Even worse! 66% of the DHCR list but only 11% of the tax bills list!
     </p>
+        <p>
+            Note: these <a href="https://www1.nyc.gov/site/finance/benefits/benefits-421a.page" target="_blank">421a</a> and <a href="https://www1.nyc.gov/site/finance/benefits/benefits-j51.page" target="_blank">J-51</a> data sources from the Department of Finance are likely more authoritative. But I'm more interested in figuring out how well these two data sources agree with one another, because they each have broad universes of rent-regulated housing in NYC.
+        </p>
+    <br>
     <p>
-        Note: these <a href="https://www1.nyc.gov/site/finance/benefits/benefits-421a.page" target="_blank">421a</a> and <a href="https://www1.nyc.gov/site/finance/benefits/benefits-j51.page" target="_blank">J-51</a> data sources from the Department of Finance are likely more authoritative. But I'm more interested in figuring out how well these two data sources agree with one another, because they each have broad universes of rent-regulated housing in NYC.
-    </p>
+        <h3>What about "normal" rent-stabilized buildings? Ones without abatement programs?</h3>
+            <table class ="tbl" cellpadding="5">
+                <tr>
+                    <td><strong>DHCR list "normal" stabilized properties</strong></td>
+                    <td>31,798</td> 
+                </tr>
+                <tr>
+                    <td><strong>Tax bills "normal" stabilized properties</strong></td>
+                    <td>35,004</td> 
+                </tr>
+                <tr>
+                    <td><strong>"Normal" stabilized properties in both</strong></td>
+                    <td>24,097</td> 
+                </tr>
+            </table>
+        </p>
+        <p>
+            This was my attempt to find what I consider to be "normal" rent-stabilized proeprties, ones that are by default subject to rent stabilization laws because they're buildings with 6 or more apartments built before 1974. I tried to get these by filtering properties that <em>didn't</em> have programs. However, I think J-51 can actually layer on top of "normal" rent stabilization, making this not super effective.
+        </p>
     <br>
     <h2>Methods</h2>
     <p>
@@ -186,7 +207,17 @@ a:hover {
             </code>
             </pre>
     </p>
+    <p>Then I mapped it!</p>
 
+        Records in DHCR with j-51: 1,343
+        Records in tax bills with j-51: 7,653
+        Records in both with j-51: 880
+
+
+
+        Tried to look at "normal" properties and the categories are different. DHCR data has categories for condo buildings, single room occupancy buildings, special financing programs, that tax bills doesn't specify. So I think what I'm calling a "normal" building in the tax bills data could be e.g. an SRO building, I'm just determining that it doesn't have j-51 or 421-a or 420-c. 
+
+    </p>
   </p>
   <p>
   </p>
