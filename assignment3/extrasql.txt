@@ -1,0 +1,19 @@
+SELECT COUNT(*) FROM
+      (SELECT rentstab16.bbl as rsbbl, rs421a, rsj51, rs420c, dhcr_4rs.*
+      FROM dhcr_4rs, rentstab16 
+      WHERE ST_Intersects(dhcr_4rs.the_geom, rentstab16.the_geom)) as comb
+        WHERE _421_a > 0 AND rs421a > 0
+
+
+Nvm because total records were 100k+, the intersect more than doubled the records. I don't need it to be spatial SQL. 
+
+
+
+#layer {
+  polygon-fill: ramp([where421a], (#7F3C8D, #11A579, #3969AC, #F2B701, #A5AA99), ("Tax Bills", "DHCR", "Both", ), "=");
+}
+#layer::outline {
+  line-width: 1;
+  line-color: #ff9600;
+  line-opacity: 1;
+}
